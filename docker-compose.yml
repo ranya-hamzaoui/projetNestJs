@@ -1,0 +1,22 @@
+version: "3.0"
+services:
+  db:
+    image: postgres
+    container_name: ecommerce
+    hostname: ecommerce
+    volumes:
+      - postgres:/data/postgres
+     # - "./backup:/backup"
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ecommerce
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: root
+      PGDATA: /data/postgres
+    ports:
+      - "5432:5432"
+volumes:
+  postgres: {}
+networks:
+  postgres:
+    driver: bridge
